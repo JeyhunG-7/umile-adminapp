@@ -6,6 +6,7 @@ import ApolloClient from "apollo-client";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import Main from './Pages/main/Main';
+import Modelling from './Pages/modelling/Modelling';
 
 import { createHttpLink } from "apollo-link-http";
 
@@ -31,7 +32,10 @@ export default function App() {
     <ApolloProvider client={client}>
       <Router>
         <Switch>
-          <Route path="/" render={(props) => <Main {...props} pageName="Main"/>} />
+          <Route exact path="/" render={(props) => <Main {...props} pageName="Main"/>} />
+        </Switch>
+        <Switch>
+          <Route exact path="/modelling" render={(props) => <Modelling {...props}/>} />
         </Switch>
       </Router>
     </ApolloProvider>
