@@ -14,6 +14,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpbmdpei11bWlsZSIsImEiOiJja2pjaWhlc2YwNDZyM
 const SCHEDULED_COLOR = '#006400';
 const NOT_SCHEDULED_COLOR = "#D3D3D3";
 const SELECTED_COLOUR = "lightblue";
+const PICKUP_COLOUR = "green";
+const DELIVERY_COLOUR = "blue";
 
 let map;
 let markersOnMap = [];
@@ -72,7 +74,7 @@ export default () => {
                 const action = index === 0 ? 'Pick Up' : 'Delivery';
 
                 const marker = new mapboxgl.Marker({
-                    color: scheduled ? SCHEDULED_COLOR : NOT_SCHEDULED_COLOR
+                    color: index === 0 ? PICKUP_COLOUR : DELIVERY_COLOUR
                 })
                     .setLngLat(geometry.coordinates)
                     .setPopup(new mapboxgl.Popup({ offset: 25 })
@@ -290,7 +292,7 @@ export default () => {
                                         <div style={{ display: 'flex', marginTop: '7px' }}>
                                             <span>{distance} km</span>
                                             <span style={{ margin: 'auto' }}>{toHrsAndMins(totalDuration)}</span>
-                                            <span>{toHrsAndMins(handlingTime)}</span>
+                                            <span>{toHrsAndMins(handlingTime * 60)}</span>
                                         </div>
 
                                         <div style={{ display: 'flex', marginTop: '7px' }}>
