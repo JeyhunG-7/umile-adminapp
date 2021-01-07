@@ -17,7 +17,10 @@ export default ({ selected, routes, variables, setSelectedRoute }) => {
         if (selected !== 0) {
             const result = [];
 
-            const { totalDuration, totalDistance, pickups, deliveries, handlingTime } = routes.find(elem => elem.id === selected);
+            const foundRoute = routes.find(elem => elem.id === selected);
+            if (!foundRoute) return;
+
+            const { totalDuration, totalDistance, pickups, deliveries, handlingTime } = foundRoute;
             const { baseTime, wage, carRate, profitMargin } = variables;
 
             const distanceInKm = totalDistance / 1000;

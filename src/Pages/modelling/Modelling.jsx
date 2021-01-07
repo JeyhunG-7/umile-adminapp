@@ -63,7 +63,10 @@ export default () => {
     }, [])
 
     useEffect(() => {
-        if (!map || !mapLoaded || !orders) return;
+        if (!map || !mapLoaded || !orders) {
+            setSelectedRoute(0);
+            return;
+        }
 
         markersOnMap.forEach(marker => marker.remove());
         markersOnMap = [];
