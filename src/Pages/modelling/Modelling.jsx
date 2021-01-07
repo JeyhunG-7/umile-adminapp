@@ -23,6 +23,17 @@ let layerIdsOnMap = [];
 
 export default () => {
 
+    // light color - Pick up
+    // dark color - drop off
+    const colorSets = [
+        "#0F5570", // blue
+        "#6B0D0C", // red
+        "#2F6607", // green
+        "#05A888", // cyan
+        "#9DC757", // lime
+        "#A6750D", // yellow
+    ]
+
     const [orders, setOrders] = useState([]);
     const [routes, setRoutes] = useState([]);
     const [selectedRoute, setSelectedRoute] = useState(0);
@@ -71,13 +82,33 @@ export default () => {
         markersOnMap.forEach(marker => marker.remove());
         markersOnMap = [];
 
+        function createDeliveryMarker(color){
+            return `
+            <svg width="30" height="30" version="1.1">
+            <g transform="translate(0 -1028.4)"><path style="fill: ${color}" d="m12 0c-4.4183 2.3685e-15 -8 3.5817-8 8 0 1.421 0.3816 2.75 1.0312 3.906 0.1079 0.192 0.221 0.381 0.3438 0.563l6.625 11.531 6.625-11.531c0.102-0.151 0.19-0.311 0.281-0.469l0.063-0.094c0.649-1.156 1.031-2.485 1.031-3.906 0-4.4183-3.582-8-8-8zm0 4c2.209 0 4 1.7909 4 4 0 2.209-1.791 4-4 4-2.2091 0-4-1.791-4-4 0-2.2091 1.7909-4 4-4z" transform="translate(0 1028.4)"/><path d="m12 3c-2.7614 0-5 2.2386-5 5 0 2.761 2.2386 5 5 5 2.761 0 5-2.239 5-5 0-2.7614-2.239-5-5-5zm0 2c1.657 0 3 1.3431 3 3s-1.343 3-3 3-3-1.3431-3-3 1.343-3 3-3z" fill="${color}" transform="translate(0 1028.4)"/></g>
+            </svg>
+            `
+        }
+
+        function createPickUpMarker(color){
+            return `
+            <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg style="background-color: ${color};" enable-background="new 0 0 30 30" height="30px" id="Capa_1" version="1.1" viewBox="0 0 30 30" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g><path style="fill: white;" d="M14.6,15.9H7.9c-1.5,0-2.7,1.2-2.7,2.7v1.9c0,1.5,1.2,2.7,2.7,2.7h6.7c1.5,0,2.7-1.2,2.7-2.7v-1.9    C17.3,17.1,16.1,15.9,14.6,15.9z M15.8,20.5c0,0.7-0.5,1.2-1.2,1.2H7.9c-0.7,0-1.2-0.5-1.2-1.2v-1.9c0-0.7,0.5-1.2,1.2-1.2h6.7    c0.7,0,1.2,0.5,1.2,1.2V20.5z M29.6,10.9l-1.4-7.4c-0.1-0.4-0.4-0.6-0.7-0.6h-25c-0.4,0-0.7,0.3-0.7,0.6L0.6,9.6    c-0.2,0.5-0.3,1-0.3,1.5c0,1.5,0.8,2.9,2.1,3.6v10.3c0,1.2,1,2.2,2.2,2.2h14c0.4,0,0.8-0.3,0.8-0.8c0,0,0,0,0-0.1c0,0,0,0,0-0.1    v-9h4v9c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0.4,0.3,0.8,0.8,0.8h1.4c1.2,0,2.2-1,2.2-2.2V14.5c1.1-0.7,1.8-1.9,1.9-3.2    C29.7,11.2,29.7,11,29.6,10.9z M26.2,24.9c0,0.4-0.3,0.7-0.7,0.7h-0.7v-9.1c0-0.4-0.3-0.8-0.8-0.8h-5.5c-0.4,0-0.8,0.3-0.8,0.8    v9.1H4.6c-0.4,0-0.7-0.3-0.7-0.7v-9.7c0.2,0,0.4,0.1,0.6,0.1c1.4,0,2.7-0.7,3.5-1.8c0.8,1.1,2,1.8,3.5,1.8s2.7-0.7,3.5-1.8    c0.8,1.1,2,1.8,3.5,1.8s2.7-0.7,3.5-1.8c0.8,1.1,2,1.8,3.5,1.8c0.3,0,0.6,0,0.8-0.1V24.9z M28.1,11c0,1.5-1.2,2.7-2.7,2.7    s-2.7-1.2-2.7-2.7c0-0.4-0.3-0.8-0.8-0.8s-0.8,0.3-0.8,0.8c0,1.5-1.2,2.7-2.7,2.7s-2.7-1.2-2.7-2.7c0-0.4-0.3-0.8-0.8-0.8    s-0.8,0.3-0.8,0.8c0,1.5-1.2,2.7-2.7,2.7c-1.5,0-2.7-1.2-2.7-2.7c0-0.4-0.3-0.8-0.8-0.8S7.3,10.6,7.3,11c0,1.5-1.2,2.7-2.7,2.7    c-1.5,0-2.7-1.2-2.7-2.7c0-0.3,0.1-0.7,0.2-1c0,0,0-0.1,0-0.1l1.1-5.5h23.8l1.2,6.5C28.1,11,28.1,11,28.1,11z" fill="#262324"/></g></g></svg>
+            `
+        }
+
+        let colorIndex = 0;
         orders.forEach(({ id, scheduled, places: { pickup, delivery } }) => {
+
+            console.log('PICKUP: ', pickup);
+            console.log('DELIVERY', delivery);
 
             pickup.concat(delivery).forEach(({ placeId, geometry }, index) => {
                 const action = index === 0 ? 'Pick Up' : 'Delivery';
 
+                let div = document.createElement('div');
+                div.innerHTML = index === 0 ? createPickUpMarker(colorSets[colorIndex]) : createDeliveryMarker(colorSets[colorIndex]);
                 const marker = new mapboxgl.Marker({
-                    color: index === 0 ? PICKUP_COLOUR : DELIVERY_COLOUR
+                    element: div
                 })
                     .setLngLat(geometry.coordinates)
                     .setPopup(new mapboxgl.Popup({ offset: 25 })
@@ -89,6 +120,7 @@ export default () => {
 
                 markersOnMap.push(marker);
             })
+            colorIndex++;
         })
 
     }, [mapLoaded, orders])
