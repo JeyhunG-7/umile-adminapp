@@ -21,7 +21,7 @@ export default ({ selected, routes, variables, setSelectedRoute }) => {
             if (!foundRoute) return;
 
             const { totalDuration, totalDistance, pickups, deliveries, handlingTime } = foundRoute;
-            const { baseTime, wage, carRate, profitMargin } = variables;
+            const { baseTime, wage, carRate, profitMargin, flatFee } = variables;
 
             const distanceInKm = totalDistance / 1000;
             const totalTime = baseTime.value + (totalDuration / 60) + handlingTime;
@@ -34,16 +34,18 @@ export default ({ selected, routes, variables, setSelectedRoute }) => {
             const costPerDel = roundTo(totalCost / deliveries, PRECISION_DECIMALS);
             const costPerAction = roundTo(totalCost / (deliveries + pickups), PRECISION_DECIMALS);
             const costPerKm = roundTo(totalCost / distanceInKm, PRECISION_DECIMALS);
+            const flatFeeRevenue = roundTo((deliveries + pickups) * flatFee.value - totalDriverPay, PRECISION_DECIMALS);
 
             result.push({ display: 'Time Compensation', value: timeCompensation, units: '$' });
             result.push({ display: 'Vehicle Compensation', value: vehicleExpense, units: '$' });
             result.push({ display: 'Total Driver Pay', value: totalDriverPay, units: '$' });
-            result.push({ display: 'Profit', value: profit, units: '$' });
+            result.push({ display: 'Profit Margin Revenue', value: profit, units: '$' });
             result.push({ display: 'Total cost', value: totalCost, units: '$' });
             result.push({ display: 'Pickups / Deliveries', value: `${pickups} / ${deliveries}`, units: '' });
             result.push({ display: 'Cost per delivery', value: costPerDel, units: '$' });
             result.push({ display: 'Cost per action', value: costPerAction, units: '$' });
             result.push({ display: 'Cost per km', value: costPerKm, units: '$' });
+            result.push({ display: 'Flat fee revenue', value: flatFeeRevenue, units: '$' });
 
             setRouteInfo(result);
         } else {
