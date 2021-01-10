@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, TextField } from '@material-ui/core';
+import { Modal, TextField, Slider, Grid } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import SettingsIcon from '@material-ui/icons/Settings';
 import '../Modelling.css';
@@ -37,29 +37,29 @@ export default ({ options, setOptions }) => {
                         flexDirection: 'column'
                     }}
                 >
-                    <div>
-                        <TextField
-                            size="small"
-                            type="number"
-                            variant="filled"
-                            margin="normal"
-                            value={options.dirW}
-                            style={{ width: 150 }}
-                            onChange={({ target: { value } }) => setOptions({ ...options, dirW: Number(value) })}
-                            label='Directional weight'
-                        />
-
-                        <TextField
-                            size="small"
-                            type="number"
-                            variant="filled"
-                            margin="normal"
-                            value={options.disW}
-                            style={{ width: 150, marginLeft: 15 }}
-                            onChange={({ target: { value } }) => setOptions({ ...options, disW: Number(value) })}
-                            label='Distance weight'
-                        />
-                    </div>
+                    <Grid container spacing={2} style={{ padding: '25px 5px 15px 5px' }}>
+                        <Grid item>
+                            <div style={{ textAlign: 'center', width: 'min-content' }}>
+                                Directional Weight
+                            </div>
+                        </Grid>
+                        <Grid item xs>
+                            <Slider
+                                value={options.disW}
+                                valueLabelDisplay="on"
+                                style={{ width: 150 }}
+                                onChange={(event, value) => {
+                                    const obj = { disW: value, dirW: 100 - value }
+                                    setOptions({ ...options, ...obj })
+                                }}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <div style={{ textAlign: 'center', width: 'min-content' }}>
+                                Distance Weight
+                            </div>
+                        </Grid>
+                    </Grid>
 
                     <Autocomplete
                         style={{ marginTop: 5 }}
