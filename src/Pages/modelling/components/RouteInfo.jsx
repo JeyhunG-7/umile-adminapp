@@ -21,7 +21,7 @@ export default ({ selected, routes, variables, setSelectedRoute }) => {
             if (!foundRoute) return;
 
             const { totalDuration, totalDistance, pickups, deliveries, handlingTime } = foundRoute;
-            const { baseTime, wage, carRate, profitMargin, flatFee } = variables;
+            const { baseTime, wage, carRate, profitMargin, flatFeeAction, flatFeeDel } = variables;
 
             const distanceInKm = totalDistance / 1000;
             const totalTime = baseTime.value + (totalDuration / 60) + handlingTime;
@@ -33,8 +33,9 @@ export default ({ selected, routes, variables, setSelectedRoute }) => {
             const totalCost = roundTo(profit + totalDriverPay, PRECISION_DECIMALS);
             const costPerDel = roundTo(totalCost / deliveries, PRECISION_DECIMALS);
             const costPerAction = roundTo(totalCost / (deliveries + pickups), PRECISION_DECIMALS);
-            const costPerKm = roundTo(totalCost / distanceInKm, PRECISION_DECIMALS);
-            const flatFeeRevenue = roundTo((deliveries + pickups) * flatFee.value - totalDriverPay, PRECISION_DECIMALS);
+            // const costPerKm = roundTo(totalCost / distanceInKm, PRECISION_DECIMALS);
+            const flatFeePickupRevenue = roundTo((deliveries + pickups) * flatFeeAction.value - totalDriverPay, PRECISION_DECIMALS);
+            const flatFeeDeliveryRevenue = roundTo(deliveries * flatFeeDel.value - totalDriverPay, PRECISION_DECIMALS);
 
             result.push({ display: 'Time Compensation', value: timeCompensation, units: '$' });
             result.push({ display: 'Vehicle Compensation', value: vehicleExpense, units: '$' });
@@ -44,8 +45,9 @@ export default ({ selected, routes, variables, setSelectedRoute }) => {
             result.push({ display: 'Pickups / Deliveries', value: `${pickups} / ${deliveries}`, units: '' });
             result.push({ display: 'Cost per delivery', value: costPerDel, units: '$' });
             result.push({ display: 'Cost per action', value: costPerAction, units: '$' });
-            result.push({ display: 'Cost per km', value: costPerKm, units: '$' });
-            result.push({ display: 'Flat fee revenue', value: flatFeeRevenue, units: '$' });
+            // result.push({ display: 'Cost per km', value: costPerKm, units: '$' });
+            result.push({ display: 'Flat fee stops', value: flatFeePickupRevenue, units: '$' });
+            result.push({ display: 'Flat fee delivery', value: flatFeeDeliveryRevenue, units: '$' });
 
             setRouteInfo(result);
         } else {
