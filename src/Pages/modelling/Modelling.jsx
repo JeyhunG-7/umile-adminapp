@@ -40,7 +40,7 @@ export default () => {
     const [routes, setRoutes] = useState([]);
     const [selectedRoute, setSelectedRoute] = useState(0);
     const [backdropOpen, setBackdropOpen] = useState(false);
-    const [options, setOptions] = useState({ dirW: 40, disW: 60, dirBias: 2 });
+    const [options, setOptions] = useState({ dirW: 0, disW: 100, dirBias: 2 });
     const [mapLoaded, setMapLoaded] = useState(false);
 
     const [variables, setVariables] = useState({
@@ -49,7 +49,7 @@ export default () => {
         carRate: { value: 0.15, display: 'Car Rate', units: '$ per km' },
         profitMargin: { value: 0, display: 'Profit Margin', units: '%' },
         flatFeeAction: { value: 7.49, display: 'Flat fee', units: '$ per action' },
-        flatFeeDel: { value: 9.99, display: 'Flat fee', units: '$ per delivery' },
+        flatFeeDel: { value: 9.99, display: 'Flat fee', units: '$ per delivery' }
     });
 
     useEffect(() => {
