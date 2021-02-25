@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import './Components.css';
 import { withRouter } from 'react-router-dom';
 
 import {
     Drawer,
     ListItem, ListItemIcon, ListItemText
 } from '@material-ui/core';
-
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import ListIcon from '@material-ui/icons/List';
-import MapIcon from '@material-ui/icons/Map';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
-
 import { makeStyles } from '@material-ui/core/styles';
 
+import LogoTransperent from '../Images/logo_transparent.png';
 import { logoutAsync } from './Helpers/Authenticator';
 
 
@@ -62,7 +57,7 @@ function SidebarComponent(props) {
     useEffect(function () {
         let pathname = window.location.pathname;
         if (pathname === PAGES.newCustomer.route) {
-            setSelectedPage(PAGES.newCustomer.id); 
+            setSelectedPage(PAGES.newCustomer.id);
         } else if (pathname === PAGES.activeOrders.route) {
             setSelectedPage(PAGES.activeOrders.id);
         } else if (pathname === PAGES.routes.route) {
@@ -89,10 +84,14 @@ function SidebarComponent(props) {
                 className={`${classes.drawer} sidebar`}
                 classes={{ paper: classes.drawerPaper, docked: classes.docked }}
             >
+                <div className="div-logo">
+                    <img alt="logo" src={LogoTransperent} />
+                    <p>admin panel</p>
+                </div>
                 <div className="sb-header">
                     <ListItem button selected={selectedPage === PAGES.newCustomer.id} onClick={e => navigateTo(PAGES.newCustomer)}>
                         <ListItemIcon>
-                            <PersonAddIcon/>
+                            <i className="lni lni-user"></i>
                         </ListItemIcon>
                         <ListItemText primary="Add Customer" style={{ letterSpacing: '0.025em' }} />
                     </ListItem>
@@ -100,13 +99,13 @@ function SidebarComponent(props) {
                 <div className={`sb-body ${classes.mainDrawerItems}`}>
                     <ListItem button selected={selectedPage === PAGES.activeOrders.id} onClick={e => navigateTo(PAGES.activeOrders)}>
                         <ListItemIcon>
-                            <ListIcon />
+                            <i className="lni lni-list"></i>
                         </ListItemIcon>
                         <ListItemText primary="Active Orders" />
                     </ListItem>
                     <ListItem button selected={selectedPage === PAGES.routes.id} onClick={e => navigateTo(PAGES.routes)}>
                         <ListItemIcon>
-                            <MapIcon />
+                            <i className="lni lni-map"></i>
                         </ListItemIcon>
                         <ListItemText primary="Routes" />
                     </ListItem>
@@ -114,7 +113,7 @@ function SidebarComponent(props) {
                 <div className="sb-footer">
                     <ListItem button onClick={e => logout()}>
                         <ListItemIcon>
-                            <ExitToAppIcon />
+                            <i className="lni lni-exit"></i>
                         </ListItemIcon>
                         <ListItemText primary="Log out" />
                     </ListItem>

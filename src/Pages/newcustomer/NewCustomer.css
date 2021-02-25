@@ -1,0 +1,24 @@
+.new-customer{
+    width: 100%;
+    padding: 40px;
+}
+
+.paper-new-customer{
+    width: 50%;
+    padding: 3%; 
+    align-items: center;
+    border: 1px solid rgb(235, 238, 240);
+}
+
+.new-customer .MuiButton-root{
+    margin-top: 20px;
+    text-transform: inherit;
+    font-size: 16px;
+    color: #fff;
+    background-color: #2993ec;
+}
+
+.input-ci.MuiFormControl-root{
+    width: 60%;
+    margin-bottom: 25px;
+}

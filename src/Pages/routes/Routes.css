@@ -1,0 +1,66 @@
+.routes{
+    width: 100%;
+    padding: 40px;
+}
+
+.paper-routes{
+    width: 70%;
+    padding: 3%; 
+    align-items: center;
+    border: 1px solid rgb(235, 238, 240);
+}
+
+.ul-hdr-routes-table{
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 5px;
+    list-style: none;
+    width: 100%;
+    grid-template-columns: 10% 20% 20% 15% 15% 15% 5%;
+    margin: 0 0 10px 0;
+}
+
+.ul-hdr-routes-table li{
+    text-align: center; 
+    line-height: 20px;
+    color: #3a4554;
+}
+
+.ul-row-routes-table{
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid rgb(214, 220, 224);
+    border-radius: 15px;
+    padding: 10px 5px;
+    list-style: none;
+    width: 100%;
+    grid-template-columns: 10% 20% 20% 15% 15% 15% 5%;
+    margin: 0 0 20px 0;
+}
+
+.ul-row-routes-table li{
+    text-align: center; 
+    line-height: 20px;
+}
+
+.ul-row-routes-table .btn-complete{
+    text-transform: inherit;
+    font-size: 14px;
+    color: #fff;
+    background-color: #2993ec;
+}
+
+.status-completed{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 96px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 14px;
+    color: #22bfa0;
+}

@@ -1,0 +1,52 @@
+/* Sidebar */
+.sidebar{
+    padding: 24px 20px;
+}
+
+.sidebar i{
+    font-size: 26px;
+}
+
+.sidebar .MuiButtonBase-root{
+    margin: 10px 0;
+}
+
+.MuiListItem-root.Mui-selected,
+.Mui-selected .lni{
+    color: #2993ec;
+}
+
+.sidebar .MuiTypography-body1{
+    font-size: 18px;
+    letter-spacing: 0.015em;
+}
+
+.sidebar .MuiListItem-root.Mui-selected, 
+.sidebar .MuiListItem-root.Mui-selected:hover{
+    background-color: rgba(41, 147, 236, 0.08);
+}
+
+.sidebar .MuiDivider-root{
+    background-color: rgb(235, 238, 240);
+}
+
+.sidebar .div-logo{
+    position: relative;
+    padding: 24px 20px;
+    margin-bottom: 50px;
+}
+
+.sidebar .div-logo img{
+    height: 30px;
+    width: auto;
+}
+
+.div-logo p{
+    margin: 0;
+    padding-left: 2px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 12px;
+    color: #2993ec;
+    letter-spacing: 0.04em;
+}
