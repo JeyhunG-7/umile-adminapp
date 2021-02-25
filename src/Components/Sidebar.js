@@ -15,7 +15,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { logoutAsync } from './Helpers/Authenticator';
-import LogoTransperent from '../Images/logo_transparent.png';
 
 
 const drawerWidth = 280;
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const PAGES = Object.freeze({
+export const PAGES = Object.freeze({
     newCustomer: {
         id: 0,
         route: '/newcustomer'
@@ -55,7 +54,7 @@ const PAGES = Object.freeze({
 });
 
 
-function Sidebar(props) {
+function SidebarComponent(props) {
     const [selectedPage, setSelectedPage] = useState(-1);
 
     const classes = useStyles();
@@ -125,4 +124,4 @@ function Sidebar(props) {
     );
 }
 
-export default withRouter(Sidebar);
+export const Sidebar = withRouter(SidebarComponent);

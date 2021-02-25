@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import Main from './Pages/main/Main';
-
 
 import {
   BrowserRouter as Router,
@@ -11,7 +9,10 @@ import {
   Redirect,
   Route
 } from "react-router-dom";
-import Sidebar from './Components/Sidebar';
+import { Sidebar, PAGES } from './Components/Sidebar';
+import NewCustomer from './Pages/newcustomer/NewCustomer';
+import ActiveOrders from './Pages/activeorders/ActiveOrders';
+import Routes from './Pages/routes/Routes';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -26,12 +27,11 @@ export default function App() {
           {/* <Route exact path="/signin" render={(props) => <SignIn {...props} pageName="Sign In" />} />
 
         {/* Private Routes */}
-          <PrivateRoute exact path="/" auth={isLoggedIn} component={Main} pageName="Main" />
-          {/* <PrivateRoute exact path="/profile" auth={this.state.isLoggedIn} component={Profile} pageName="Profile" />
-        <PrivateRoute exact path="/orders" auth={this.state.isLoggedIn} component={Orders} pageName="Orders" />
-        <PrivateRoute exact path="/neworder" auth={this.state.isLoggedIn} component={NewOrder} pageName="New Order" /> */}
+          <PrivateRoute exact path={PAGES.newCustomer.route} auth={isLoggedIn} component={NewCustomer} pageName="New Customer" />
+          <PrivateRoute exact path={PAGES.activeOrders.route} auth={isLoggedIn} component={ActiveOrders} pageName="Active Orders" />
+          <PrivateRoute exact path={PAGES.routes.route} auth={isLoggedIn} component={Routes} pageName="Routes" />
 
-          <Redirect from='*' to='/' />
+          <Redirect from='*' to='/activeorders' />
         </Switch>
       </Router>
     </div>
