@@ -1,55 +1,43 @@
-import axios from "axios";
+import { GetAuthToken } from "../Components/Helpers/LocalStorage";
 
-const instance = axios.create({
-    withCredentials: true
-});
-
-// fetch(`http://localhost:8080/model/orders`, {
-//     method: 'GET',
-//     mode: 'cors'
-// }).then(data => {
-//     console.log('FETCH PART 1 => ', data);
-//     return data.json();
-// }).then(data => {
-//     console.log('FETCH PART 2 => ', data);
-// })
-
-/**
- * Custom made requester
- * @param {string} url request url
- * @param {object} param param object 
- * @param {function} err for error message
- */
-export async function makeGetRequest(url, { params = {} } = {}, err) {
+export async function makeGetRequest(url, { auth = false, query = {} }) {
     try {
-        var u = new URL(`http://localhost:8080/api${url}`);
-        u.search = new URLSearchParams(params).toString();
+
+        let opts = {
+            method: 'GET'
+        }
+
         try{
-            var result = await fetch(u, {
-                method: 'GET',
-                mode: 'cors'
-            });
-            console.log("FETCH PART 1 => ", result);
+            if (auth){
+                var auth_token = GetAuthToken();
+                if (!auth_token){
+                    return false;
+                }
+
+                opts.headers = {
+                    'Authorization': `Bearer ${auth_token}`,
+                }
+                
+            }
+
+            var u = new URL(`http:/fakehost/api/${url}`);
+            u.search = new URLSearchParams(query).toString();
+            let relative_url = u.pathname + u.search;
+            let result = await fetch(relative_url, opts); 
             var data = await result.json();
-            console.log("FETCH PART 2 => ", data);
         } catch(e){
             console.error(e);
             return;
         }
-        
-        // const { data: { data, success, message, devMessage } } = await instance.get(`http://localhost:8080${url}`, { params });
 
-        // console.log('GET =>', url, 'Success:', success, 'Data:', data, 'Message:', message, 'Dev Message:', devMessage);
 
         if (data.success) {
             return data.data;
         } else {
-            // if (err) err(message);
-            // console.error('Server message and devMessage:', message, devMessage);
+            console.error('Server message and devMessage:', data);
         }
     } catch (error) {
-        // console.error(error);
-        // alert(error.message);
+        console.error(error);
     }
 
     return false;
@@ -61,51 +49,38 @@ export async function makeGetRequest(url, { params = {} } = {}, err) {
  * @param {object} param param object 
  * @param {function} err for error message
  */
-export async function makePostRequest(url, { obj = undefined, params = {} } = {}, err) {
-    console.log('OBJ =>', obj);
-    console.log('PARAMS =>', params);
-    var u = new URL(`http://localhost:8080/api${url}`);
-    u.search = new URLSearchParams(params).toString();
+export async function makePostRequest(url, { auth = false, body = {} }) {
     try{
-        var result = await fetch(u, {
+
+        let headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+
+        if (auth){
+            var auth_token = GetAuthToken();
+            if (!auth_token){
+                return false;
+            }
+            
+            headers.Authorization = `Bearer ${auth_token}`;
+        }
+
+        var result = await fetch(`/api/${url}`, {
             method: 'POST',
             mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(obj)
+            headers: headers,
+            body: JSON.stringify(body)
         });
-        console.log("FETCH PART 1 => ", result);
         var data = await result.json();
-        console.log("FETCH PART 2 => ", data);
         if (data.success) {
             return data.data;
         }
     } catch(e){
         console.error(e);
-        err(e);
         return;
     }
-    // try {
-
-        
-    //     // console.log('POST REQUEST');
-    //     // const { data: { data, success, message, devMessage } } = await instance.post(`http://localhost:8080/api${url}`, obj, { params });
-
-    //     // console.log('POST =>', url, 'Success:', success, 'Data:', data, 'Message:', message, 'Dev Message:', devMessage);
-
-    //     if (success) {
-    //         return data;
-    //     } else {
-    //         if (err) err(message);
-    //         console.error('Server message and devMessage:', message, devMessage);
-    //     }
-    // } catch (error) {
-    //     console.error(error);
-    //     alert(error.message);
-    // }
-
+    
     return false;
 }
 
