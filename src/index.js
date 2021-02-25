@@ -1,44 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from "apollo-client";
-import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import Main from './Pages/main/Main';
-import Modelling from './Pages/modelling/Modelling';
 
-import { createHttpLink } from "apollo-link-http";
 
 import {
   BrowserRouter as Router,
   Switch,
+  Redirect,
   Route
 } from "react-router-dom";
-
-const cache = new InMemoryCache();
-
-const link = createHttpLink({
-  uri: 'http://localhost:8080/graphql'
-});
-
-const client = new ApolloClient({
-  cache,
-  link
-});
+import Sidebar from './Components/Sidebar';
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+
   return (
-    <ApolloProvider client={client}>
+    <div style={{ display: "flex" }}>
       <Router>
+        {isLoggedIn ? <Sidebar /> : <></>}
         <Switch>
-          <Route exact path="/" render={(props) => <Main {...props} pageName="Main"/>} />
-        </Switch>
-        <Switch>
-          <Route exact path="/modelling" render={(props) => <Modelling {...props}/>} />
+          {/* Public Routes */}
+          {/* <Route exact path="/signin" render={(props) => <SignIn {...props} pageName="Sign In" />} />
+
+        {/* Private Routes */}
+          <PrivateRoute exact path="/" auth={isLoggedIn} component={Main} pageName="Main" />
+          {/* <PrivateRoute exact path="/profile" auth={this.state.isLoggedIn} component={Profile} pageName="Profile" />
+        <PrivateRoute exact path="/orders" auth={this.state.isLoggedIn} component={Orders} pageName="Orders" />
+        <PrivateRoute exact path="/neworder" auth={this.state.isLoggedIn} component={NewOrder} pageName="New Order" /> */}
+
+          <Redirect from='*' to='/' />
         </Switch>
       </Router>
-    </ApolloProvider>
+    </div>
+  );
+}
+
+function PrivateRoute({ component: Component, auth, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        auth ?
+          <Component {...props} /> :
+          <Redirect to="/signin" />
+      }
+    />
   );
 }
 
