@@ -1,0 +1,232 @@
+.sign-up-page,
+.sign-in-page{
+    flex-grow: 1;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-body{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 480px;
+    height: auto;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 25px 75px rgba(16,30,54,.25);
+    border-radius: 6px;
+    padding: 30px 60px 26px;
+    transition: all ease-in-out 0.15s;
+}
+
+.sign-header{
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 46px;
+    color: #292d34;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.user-input{
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.user-input input{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    width: 100%;
+    border: 1px solid #e9ebf0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px 20px 8px 40px;
+    color: #292d34;
+    transition: all ease-in-out 0.15s;
+}
+
+.user-input.password input{
+    padding: 8px 130px 8px 40px;
+}
+
+.user-input label{
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 11px;
+    letter-spacing: 0.015em;
+    display: block;
+    color: #292d34;
+    padding: 0 0 8px 2px;
+}
+
+.user-input input:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+}
+
+.user-input input::placeholder{
+    color: #b9bec7;
+    font-size: 16px;
+    letter-spacing: 0.025em;
+}
+
+.user-input .user-icon,
+.user-input .email-icon,
+.user-input .company-icon,
+.user-input .password-icon{
+    position: absolute;
+    top: 29px;
+    left: 11px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #b9bec7;
+}
+
+.user-input.error .helper-txt{
+    position: absolute;
+    display: flex;
+    top: 60px;
+    color: #e70000;
+    float: left;
+    font-size: 12px;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.user-input.error input{
+    border-color: #e70000;
+}
+
+.btn-sign{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 25px;
+    background: #2993ec;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.015em;
+    font-size: 17px;
+    color: #fff;
+    outline: none;
+    border: none;
+    transition: all cubic-bezier(.785,.135,.15,.86) 0.15s;
+    opacity: 0.8;
+}
+
+.btn-sign:hover{
+    opacity: 1.0;
+    cursor: pointer;
+}
+
+.btn-forgot-password{
+    position: absolute;
+    right: 0;
+    height: 40px;
+    width: 130px;
+    padding: 0 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.015em;
+    color: #2993ec;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    opacity: 0.8;
+    transition: all cubic-bezier(.785,.135,.15,.86) 0.15s;
+}
+
+.btn-forgot-password:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
+.btn-back-to-signin{
+    width: 100%;
+    height: 14px;
+    font-size: 12px;
+    letter-spacing: 0.015em;
+    color: #2993ec;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    opacity: 0.8;
+    transition: all cubic-bezier(.785,.135,.15,.86) 0.15s;
+}
+
+.btn-back-to-signin:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
+.sign-body .names{
+    display: flex;
+    flex-direction: row;
+}
+
+.names .fname{
+    margin-right: 5px;
+}
+
+.names .lname{
+    margin-left: 5px;
+}
+
+.sign-body .error-txt{
+    width: 100%;
+    text-align: center;
+    color: #e70000;
+    float: left;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+
+.sign-in-page,
+.sign-up-page{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.sign-in-page .bg-square,
+.sign-up-page .bg-square{
+    position: absolute;
+    top: -22vw;
+    right: -75vw;
+    width: 100vw;
+    padding-top: 100%;
+    border-radius: 5%;
+    background-color: rgba(41, 147, 236, 0.1);
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(35deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    z-index: 0;
+}
+
+.sign-in-page .div-logo,
+.sign-up-page .div-logo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    z-index: 10;
+
+}
+
+.sign-in-page .div-logo img,
+.sign-up-page .div-logo img{
+    height: 30px;
+    width: auto;
+}
+
+.p-message{
+    text-align: center;
+    letter-spacing: 0.015em;
+    color: #3a4554;
+}
