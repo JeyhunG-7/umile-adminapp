@@ -230,3 +230,17 @@
     letter-spacing: 0.015em;
     color: #3a4554;
 }
+
+.div-logo a{
+    position: relative;
+}
+
+.div-logo p{
+    margin: 0;
+    padding-left: 2px;
+    font-size: 14px;
+    position: absolute;
+    bottom: -10px;
+    color: #2993ec;
+    letter-spacing: 0.04em;
+}
