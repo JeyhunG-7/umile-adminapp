@@ -1,6 +1,9 @@
 import React from 'react'
+import Moment from 'react-moment';
 
 import { Button } from '@material-ui/core';
+
+import OrderModal from './OrdersModal';
 
 
 export default function Route(props) {
@@ -25,15 +28,13 @@ export default function Route(props) {
     return (
         <ul className="ul-row-routes-table">
             <li>{route.id}</li>
+            <li><Moment date={route.date} format="ll" withTitle /></li>
             <li>{route.driver}</li>
-            <li>{route.distance}</li>
             <li>{route.duration}</li>
             <li>{route.payout}</li>
             <li>{_renderRouteStatus(route)}</li>
             <li>
-                <Button className="btn-view-route">
-                    <i className="lni lni-eye"></i>
-                </Button>
+                <OrderModal pickupInfo={route.pickup} orders={route.orders}/>
             </li>
         </ul>
     );

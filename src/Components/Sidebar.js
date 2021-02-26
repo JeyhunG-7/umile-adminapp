@@ -84,7 +84,7 @@ function SidebarComponent(props) {
                 className={`${classes.drawer} sidebar`}
                 classes={{ paper: classes.drawerPaper, docked: classes.docked }}
             >
-                <div className="div-logo">
+                <div className="div-logo admin-panel">
                     <img alt="logo" src={LogoTransperent} />
                     <p>admin panel</p>
                 </div>
