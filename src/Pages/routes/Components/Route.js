@@ -34,7 +34,7 @@ export default function Route(props) {
             <li>{route.payout}</li>
             <li>{_renderRouteStatus(route)}</li>
             <li>
-                <OrderModal pickupInfo={route.pickup} orders={route.orders}/>
+                <OrderModal orders={route.orders}/>
             </li>
         </ul>
     );

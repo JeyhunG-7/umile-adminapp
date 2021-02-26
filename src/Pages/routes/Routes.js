@@ -14,24 +14,52 @@ export default function Routes(props) {
             date: 1614303891997,
             duration: '3hr 30min',
             payout: '$57',
-            pickup: {
-                companyName: 'Arvel',
-                address: '303-13 Ave SW Calgary, AB'
-            },
             orders: [
                 {
-                    id: 4,
-                    customerName: 'Sttefanie Woi',
-                    address: '2509 14 St SW, Calgary, AB',
-                    phone: '4033977020',
-                    notes: null
+                    id: 1, //order id
+                    pickup: {
+                        companyName: 'Arvel',
+                        address: '303-13 Ave SW Calgary, AB'
+                    },
+                    dropoffs: [
+                        {
+                            id: 1,
+                            customerName: 'Sttefanie Woi',
+                            address: '2509 14 St SW, Calgary, AB',
+                            phone: '4033977020',
+                            notes: null
+                        },
+                        {
+                            id: 2,
+                            customerName: 'John Akistein',
+                            address: '2104 17 St SW, Calgary, AB',
+                            phone: '4031235678',
+                            notes: 'Buzzer 202'
+                        }
+                    ],
                 },
                 {
-                    id: 3,
-                    customerName: 'John Akistein',
-                    address: '2104 17 St SW, Calgary, AB',
-                    phone: '4031235678',
-                    notes: 'Buzzer 202'
+                    id: 2, //order id
+                    pickup: {
+                        companyName: 'Dwarf Stars',
+                        address: '4104 17 St SW Calgary, AB'
+                    },
+                    dropoffs: [
+                        {
+                            id: 3,
+                            customerName: 'Sttefanie Woi',
+                            address: '2509 14 St SW, Calgary, AB',
+                            phone: '4033977020',
+                            notes: null
+                        },
+                        {
+                            id: 4,
+                            customerName: 'John Akistein',
+                            address: '2104 17 St SW, Calgary, AB',
+                            phone: '4031235678',
+                            notes: 'Buzzer 202'
+                        }
+                    ]
                 }
             ],
             status: 1 //not completed
@@ -42,24 +70,52 @@ export default function Routes(props) {
             date: 1614303691997,
             duration: '2hr 30min',
             payout: '$47',
-            pickup: {
-                companyName: 'Arvel',
-                address: '303-13 Ave SW Calgary, AB'
-            },
             orders: [
                 {
-                    id: 1,
-                    customerName: 'Sttefanie Woi',
-                    address: '2509 14 St SW, Calgary, AB',
-                    phone: '4033977020',
-                    notes: null
+                    id: 3, //order id
+                    pickup: {
+                        companyName: 'Arvel',
+                        address: '303-13 Ave SW Calgary, AB'
+                    },
+                    dropoffs: [
+                        {
+                            id: 5,
+                            customerName: 'Sttefanie Woi',
+                            address: '2509 14 St SW, Calgary, AB',
+                            phone: '4033977020',
+                            notes: null
+                        },
+                        {
+                            id: 6,
+                            customerName: 'John Akistein',
+                            address: '2104 17 St SW, Calgary, AB',
+                            phone: '4031235678',
+                            notes: 'Buzzer 202'
+                        }
+                    ],
                 },
                 {
-                    id: 2,
-                    customerName: 'John Akistein',
-                    address: '2104 17 St SW, Calgary, AB',
-                    phone: '4031235678',
-                    notes: 'Buzzer 202'
+                    id: 4, //order id
+                    pickup: {
+                        companyName: 'Dwarf Stars',
+                        address: '4104 17 St SW Calgary, AB'
+                    },
+                    dropoffs: [
+                        {
+                            id: 7,
+                            customerName: 'Sttefanie Woi',
+                            address: '2509 14 St SW, Calgary, AB',
+                            phone: '4033977020',
+                            notes: null
+                        },
+                        {
+                            id: 8,
+                            customerName: 'John Akistein',
+                            address: '2104 17 St SW, Calgary, AB',
+                            phone: '4031235678',
+                            notes: 'Buzzer 202'
+                        }
+                    ]
                 }
             ],
             status: 2 //not completed

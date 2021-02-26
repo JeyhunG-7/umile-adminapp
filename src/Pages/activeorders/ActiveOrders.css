@@ -1,0 +1,11 @@
+.active-orders{
+    width: 100%;
+    padding: 40px;
+}
+
+.paper-ao{
+    width: 90%;
+    padding: 3%; 
+    align-items: center;
+    border: 1px solid rgb(235, 238, 240);
+}

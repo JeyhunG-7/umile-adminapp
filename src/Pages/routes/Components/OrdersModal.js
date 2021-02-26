@@ -45,30 +45,8 @@ const OrdersModal = React.forwardRef((props, ref) => {
                 BackdropProps={{ timeout: 500 }}
             >
                 <Fade in={open}>
-                    <div style={{width: '60%', margin: 'auto'}} className="flex-column">
-                    <div className="div-pick-up flex-column">
-                        <h3>Pick up information</h3>
-                        <ul className="ul-hdr-pickup-table">
-                            <li>Company</li>
-                            <li>Address</li>
-                        </ul>
-                        <ul className="ul-row-pickup-table">
-                            <li>{pickupInfo.companyName}</li>
-                            <li>{pickupInfo.address}</li>
-                        </ul>
-                    </div>
-
-                    <div className="div-pick-up flex-column">
-                        <h3>Drop off information</h3>
-                        <ul className="ul-hdr-dropoff-table">
-                            <li>id</li>
-                            <li>Name</li>
-                            <li>Address</li>
-                            <li>Phone</li>
-                            <li>Notes</li>
-                        </ul>
-                        <OrdersMap orders={orders}/>
-                    </div>
+                    <div className="flex-column body-modal-route">
+                        <OrdersMap orders={orders} />
                     </div>
                 </Fade>
             </Modal>

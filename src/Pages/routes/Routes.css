@@ -96,7 +96,13 @@
 
 .div-pick-up{
     background-color: #fff;
-    width: 100%;
+}
+
+.body-modal-route{
+    width: 60%; 
+    max-height: 80%; 
+    margin: auto; 
+    overflow-y: scroll;
 }
 
 .modal-route div{
@@ -104,12 +110,19 @@
 }
 
 .div-pick-up{
-    padding: 16px 32px 24px;
+    padding: 16px 32px 10px;
 }
 
 .div-pick-up h3{
     color: #3a4554;
     font-weight: 500;
+}
+
+.div-order-id{
+    padding: 5px 10px;
+    text-align: center;
+    background-color: #2993ec;
+    color: #fff;
 }
 
 @media (min-width: 1500px){
