@@ -88,15 +88,13 @@ function SidebarComponent(props) {
                     <img alt="logo" src={LogoTransperent} />
                     <p>admin panel</p>
                 </div>
-                <div className="sb-header">
+                <div className={`sb-body ${classes.mainDrawerItems}`}>
                     <ListItem button selected={selectedPage === PAGES.newCustomer.id} onClick={e => navigateTo(PAGES.newCustomer)}>
                         <ListItemIcon>
                             <i className="lni lni-user"></i>
                         </ListItemIcon>
                         <ListItemText primary="Add Customer" style={{ letterSpacing: '0.025em' }} />
                     </ListItem>
-                </div>
-                <div className={`sb-body ${classes.mainDrawerItems}`}>
                     <ListItem button selected={selectedPage === PAGES.activeOrders.id} onClick={e => navigateTo(PAGES.activeOrders)}>
                         <ListItemIcon>
                             <i className="lni lni-list"></i>

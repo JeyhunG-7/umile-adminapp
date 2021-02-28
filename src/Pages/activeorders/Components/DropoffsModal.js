@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Modal, Backdrop, Fade, MenuItem } from '@material-ui/core';
-
 import OrdersMap from './OrdersMap';
 
 
@@ -18,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const OrdersModal = React.forwardRef((props, ref) => {
-    const orders = props.orders;
+const DropoffsModal = React.forwardRef((props, ref) => {
+    const order = props.order;
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
@@ -44,8 +43,16 @@ const OrdersModal = React.forwardRef((props, ref) => {
                 BackdropProps={{ timeout: 500 }}
             >
                 <Fade in={open}>
-                    <div className="flex-column body-modal-route">
-                        <OrdersMap orders={orders} />
+                    <div className="flex-column body-modal-dropoffs">
+                        <h3>Drop off information</h3>
+                        <ul className="ul-hdr-dropoff-table">
+                            <li>id</li>
+                            <li>Name</li>
+                            <li>Address</li>
+                            <li>Phone</li>
+                            <li>Notes</li>
+                        </ul>
+                        <OrdersMap dropoffs={order.dropoffs}/>
                     </div>
                 </Fade>
             </Modal>
@@ -53,4 +60,4 @@ const OrdersModal = React.forwardRef((props, ref) => {
     );
 });
 
-export default OrdersModal;
+export default DropoffsModal;

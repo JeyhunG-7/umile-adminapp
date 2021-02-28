@@ -26,16 +26,16 @@ export default function Route(props) {
     }
 
     return (
-        <ul className="ul-row-routes-table">
-            <li>{route.id}</li>
-            <li><Moment date={route.date} format="ll" withTitle /></li>
-            <li>{route.driver}</li>
-            <li>{route.duration}</li>
-            <li>{route.payout}</li>
-            <li>{_renderRouteStatus(route)}</li>
-            <li>
+        <div className="ul-row-routes-table">
+            <div className="ul-li">{route.id}</div>
+            <div className="ul-li"><Moment date={route.date} format="ll" withTitle /></div>
+            <div className="ul-li">{route.driver}</div>
+            <div className="ul-li">{route.duration}</div>
+            <div className="ul-li">{route.payout}</div>
+            <div className="ul-li">{_renderRouteStatus(route)}</div>
+            <div className="ul-li">
                 <OrderModal orders={route.orders}/>
-            </li>
-        </ul>
+            </div>
+        </div>
     );
 }

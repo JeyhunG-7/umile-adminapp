@@ -69,7 +69,7 @@
     grid-template-columns: 10% 15% 20% 17.25% 17.25% 15% 5%;
 }
 
-.ul-row-routes-table li,
+.ul-row-routes-table .ul-li,
 .ul-row-pickup-table li,
 .ul-row-orders-table li{
     text-align: center; 
