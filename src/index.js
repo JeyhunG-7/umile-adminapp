@@ -41,7 +41,7 @@ export default function App() {
             {/* Public Routes */}
             <Route exact path="/signin" render={(props) => <SignIn {...props} pageName="Sign In" />} />
 
-          {/* Private Routes */}
+            {/* Private Routes */}
             <PrivateRoute exact path={PAGES.newCustomer.route} auth={isLoggedIn} component={NewCustomer} pageName="New Customer" />
             <PrivateRoute exact path={PAGES.activeOrders.route} auth={isLoggedIn} component={ActiveOrders} pageName="Active Orders" />
             <PrivateRoute exact path={PAGES.routes.route} auth={isLoggedIn} component={Routes} pageName="Routes" />

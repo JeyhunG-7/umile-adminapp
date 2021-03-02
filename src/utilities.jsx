@@ -1,4 +1,4 @@
-import { GetAuthToken } from "../Components/Helpers/LocalStorage";
+import { GetAuthToken } from "./Components/Helpers/LocalStorage";
 
 export async function makeGetRequest(url, { auth = false, query = {} }) {
     try {

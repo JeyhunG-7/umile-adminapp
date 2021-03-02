@@ -5,6 +5,7 @@ import Validate from 'validate.js';
 import { Paper, Button, TextField } from '@material-ui/core';
 
 import DynamicIcon from '../../Components/Helpers/DynamicIcon';
+import { makePostRequest } from '../../utilities';
 
 
 export default function NewCustomer(props) {
@@ -60,7 +61,18 @@ export default function NewCustomer(props) {
         });
 
         if (!check) {
-            // BE call
+            let result = makePostRequest('/admin/createinvitation', { 
+                auth: true, 
+                body: {
+                    email: email,
+                    first_name: customerName
+                }
+            });
+
+            if (!result){
+                console.log("Error: couldn't send invitation");
+            }
+
         }
         setLoadingSubmit(false);
 
