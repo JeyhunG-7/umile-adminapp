@@ -1,15 +1,15 @@
 import React from 'react';
-import ScheduledOrder from './ScheduledOrder';
+import PlacedOrder from './PlacedOrder';
 
 
-export default function Scheduled(props) {
+export default function Placed(props) {
     let orders = props.orders;
 
     function _renderOrders() {
         if (orders.length > 0) {
             let ordersList = orders
                 .map((order) =>
-                    <ScheduledOrder
+                    <PlacedOrder
                         key={order.id}
                         order={order} />
                 );
@@ -19,7 +19,7 @@ export default function Scheduled(props) {
 
     return (
         <>
-            <ul className="ul-hdr-scheduled-table">
+            <ul className="ul-hdr-placed-table">
                 <li>Order #</li>
                 <li>Vendor</li>
                 <li>Address</li>

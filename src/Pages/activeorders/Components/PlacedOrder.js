@@ -5,7 +5,7 @@ import OrderModal from './OrderModal';
 import { Button, Menu, MenuItem } from '@material-ui/core';
 
 
-export default function ScheduledOrder(props) {
+export default function PlacedOrder(props) {
     let order = props.order;
     const [anchorEl, setAnchorEl] = useState(null);
     const [status, setStatus] = useState(order.status);
@@ -52,7 +52,7 @@ export default function ScheduledOrder(props) {
     }
 
     return (
-        <div className="ul-row-scheduled-table">
+        <div className="ul-row-placed-table">
             <div className="ul-li">{order.id}</div>
             <div className="ul-li">{order.pickup.companyName}</div>
             <div className="ul-li">{order.pickup.address}</div>
