@@ -11,6 +11,7 @@ export default function Scheduled(props) {
                 <li>Vendor</li>
                 <li>Address</li>
                 <li>Status Date</li>
+                <li>Status</li>
             </ul>
             <OrdersMap scheduled={true} orders={props.orders} />
         </>

@@ -7,62 +7,59 @@ import ScheduledOrders from './Components/Scheduled';
 
 
 export default function ActiveOrders(props) {
-    const tmpScheduled = [
+    const scheduledList = [
         {
             id: 1, //order id
+            status: "Submitted for delivery",
             pickup: {
                 companyName: 'Arvel',
                 address: '303-13 Ave SW Calgary, AB',
-                date: 1614303891997 //status date
+                date: 1614103891997 //status date
             },
-            dropoffs: [
-                {
-                    id: 1,
-                    customerName: 'Sttefanie Woi',
-                    address: '2509 14 St SW, Calgary, AB',
-                    phone: '4033977020',
-                    notes: null
-                },
-                {
-                    id: 2,
-                    customerName: 'John Akistein',
-                    address: '2104 17 St SW, Calgary, AB',
-                    phone: '4031235678',
-                    notes: 'Buzzer 202'
-                }
-            ],
+            dropoff: {
+                customerName: 'Sttefanie Woi',
+                address: '2509 14 St SW, Calgary, AB',
+                phone: '4033977020',
+                notes: null
+            }
         },
         {
             id: 2, //order id
+            status: "Submitted for delivery",
             pickup: {
-                companyName: 'Dwarf Stars',
-                address: '4104 17 St SW Calgary, AB',
-                date: 1614303691997 //status date
+                companyName: 'Arvel',
+                address: '303-13 Ave SW Calgary, AB',
+                date: 1614303791997 //status date
             },
-            dropoffs: [
-                {
-                    id: 3,
-                    customerName: 'Sttefanie Woi',
-                    address: '2509 14 St SW, Calgary, AB',
-                    phone: '4033977020',
-                    notes: null
-                },
-                {
-                    id: 4,
-                    customerName: 'John Akistein',
-                    address: '2104 17 St SW, Calgary, AB',
-                    phone: '4031235678',
-                    notes: 'Buzzer 202'
-                }
-            ]
+            dropoff: {
+                customerName: 'Sttefanie Woi',
+                address: '2509 14 St SW, Calgary, AB',
+                phone: '4033977020',
+                notes: null
+            }
+        },
+        {
+            id: 3, //order id
+            status: "Submitted for delivery",
+            pickup: {
+                companyName: 'Arvel',
+                address: '303-13 Ave SW Calgary, AB',
+                date: 1614703691997 //status date
+            },
+            dropoff: {
+                customerName: 'Steve Johnson',
+                address: '3124 4 St SE, Calgary, AB',
+                phone: '4033971234',
+                notes: null
+            }
         }
-    ];
+    ]
 
     return (
         <div className="active-orders">
             <Paper className="paper-scheduled flex-column" elevation={0}>
                 <h3>Scheduled orders</h3>
-                <ScheduledOrders orders={tmpScheduled}/>
+                <ScheduledOrders orders={scheduledList}/>
             </Paper>
             <Paper className="paper-placed flex-column" elevation={0}>
                 <h3>Placed orders</h3>

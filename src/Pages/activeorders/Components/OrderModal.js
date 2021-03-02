@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Modal, Backdrop, Fade, MenuItem } from '@material-ui/core';
-import OrdersMap from './OrdersMap';
+import Moment from 'react-moment';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const DropoffsModal = React.forwardRef((props, ref) => {
+const OrderModal = React.forwardRef((props, ref) => {
     const order = props.order;
 
     const classes = useStyles();
@@ -43,16 +43,37 @@ const DropoffsModal = React.forwardRef((props, ref) => {
                 BackdropProps={{ timeout: 500 }}
             >
                 <Fade in={open}>
-                    <div className="flex-column body-modal-dropoffs">
+                    <div className="flex-column body-modal-order">
+                        <h3>Pick up information</h3>
+                        <ul className="ul-hdr-pu-table">
+                            <li>Order #</li>
+                            <li>Vendor</li>
+                            <li>Address</li>
+                            <li>Status Date</li>
+                            <li>Notes</li>
+                        </ul>
+                        <ul className="ul-row-pu-table">
+                            <li>{order.id}</li>
+                            <li>{order.pickup.companyName}</li>
+                            <li>{order.pickup.address}</li>
+                            <li>
+                                <Moment date={order.pickup.date} format="ll" withTitle />
+                            </li>
+                            <li>{order.pickup.notes}</li>
+                        </ul>
                         <h3>Drop off information</h3>
-                        <ul className="ul-hdr-dropoff-table">
-                            <li>id</li>
+                        <ul className="ul-hdr-do-table">
                             <li>Name</li>
                             <li>Address</li>
                             <li>Phone</li>
                             <li>Notes</li>
                         </ul>
-                        <OrdersMap dropoffs={order.dropoffs}/>
+                        <ul className="ul-row-do-table">
+                            <li>{order.dropoff.customerName}</li>
+                            <li>{order.dropoff.address}</li>
+                            <li>{order.dropoff.phone}</li>
+                            <li>{order.dropoff.notes}</li>
+                        </ul>
                     </div>
                 </Fade>
             </Modal>
@@ -60,4 +81,4 @@ const DropoffsModal = React.forwardRef((props, ref) => {
     );
 });
 
-export default DropoffsModal;
+export default OrderModal;

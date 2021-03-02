@@ -1,6 +1,5 @@
 import React from 'react'
 import ScheduledOrder from './ScheduledOrder';
-import Dropoff from './Dropoff';
 
 
 export default function OrdersMap(props) {
@@ -12,13 +11,6 @@ export default function OrdersMap(props) {
                 <ScheduledOrder
                     key={order.id}
                     order={order} />
-            );
-    } else if (props.dropoffs?.length > 0) {
-        mapItems = props.dropoffs
-            .map((dropoff) =>
-                <Dropoff
-                    key={dropoff.id}
-                    dropoff={dropoff} />
             );
     }
 
