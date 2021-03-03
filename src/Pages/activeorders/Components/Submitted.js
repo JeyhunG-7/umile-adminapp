@@ -1,5 +1,5 @@
 import React from 'react';
-import PlacedOrder from './PlacedOrder';
+import SubmittedOrder from './SubmittedOrder';
 
 
 export default function Placed(props) {
@@ -8,7 +8,7 @@ export default function Placed(props) {
         if (props.orders.length > 0) {
             let tmpList = props.orders
                 .map((order) =>
-                    <PlacedOrder
+                    <SubmittedOrder
                         key={order.id + order.received_date}
                         order={order}
                         statusList={props.statusList}
