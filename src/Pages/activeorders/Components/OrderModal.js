@@ -53,13 +53,13 @@ const OrderModal = React.forwardRef((props, ref) => {
                             <li>Notes</li>
                         </ul>
                         <ul className="ul-row-pu-table">
-                            <li>{order.id}</li>
-                            <li>{order.pickup.companyName}</li>
-                            <li>{order.pickup.address}</li>
+                            <li>{order?.id}</li>
+                            <li>{order?.client?.company}</li>
+                            <li>{order?.pickup?.address}</li>
                             <li>
-                                <Moment date={order.pickup.date} format="ll" withTitle />
+                                <Moment date={order?.status?.timestamp} format="ll" withTitle />
                             </li>
-                            <li>{order.pickup.notes}</li>
+                            <li>{order?.pickup?.note}</li>
                         </ul>
                         <h3>Drop off information</h3>
                         <ul className="ul-hdr-do-table">
@@ -69,10 +69,10 @@ const OrderModal = React.forwardRef((props, ref) => {
                             <li>Notes</li>
                         </ul>
                         <ul className="ul-row-do-table">
-                            <li>{order.dropoff.customerName}</li>
-                            <li>{order.dropoff.address}</li>
-                            <li>{order.dropoff.phone}</li>
-                            <li>{order.dropoff.notes}</li>
+                            <li>{order?.dropoff?.customerName}</li>
+                            <li>{order?.dropoff?.address}</li>
+                            <li>{order?.dropoff?.phone}</li>
+                            <li>{order?.dropoff?.note}</li>
                         </ul>
                     </div>
                 </Fade>

@@ -3,17 +3,18 @@ import ScheduledOrder from './ScheduledOrder';
 
 
 export default function Scheduled(props) {
-    let orders = props.orders;
 
     function _renderOrders() {
-        if (orders.length > 0) {
-            let ordersList = orders
+        if (props.orders.length > 0) {
+            let tmpList = props.orders
                 .map((order) =>
                     <ScheduledOrder
-                        key={order.id}
-                        order={order} />
+                        key={order.id + order.received_date}
+                        order={order}
+                        statusList={props.statusList} 
+                        onUpdate={() => props.onUpdate()}/>
                 );
-            return ordersList;
+            return tmpList;
         }
     }
 

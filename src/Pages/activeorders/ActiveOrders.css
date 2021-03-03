@@ -42,7 +42,7 @@
 
 .ul-hdr-scheduled-table,
 .ul-hdr-placed-table{
-    grid-template-columns: 15% 15% 30% 20% 10% 10%;
+    grid-template-columns: 15% 15% 30% 15% 15% 10%;
     margin: 5px;
 }
 
@@ -51,7 +51,7 @@
     border: 1px solid rgb(214, 220, 224);
     border-radius: 15px;
     margin: 0 0 20px 0;
-    grid-template-columns: 15% 15% 30% 20% 10% 10%;
+    grid-template-columns: 15% 15% 30% 15% 15% 10%;
 }
 
 .ul-hdr-scheduled-table li,
@@ -114,4 +114,9 @@
     border: 1px solid rgb(214, 220, 224);
     border-radius: 15px;
     margin: 0 0 20px 0;
+}
+
+.btn-menu.MuiButtonBase-root{
+    display: flex;
+    margin: 0 auto;
 }

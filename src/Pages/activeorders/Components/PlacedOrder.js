@@ -3,61 +3,48 @@ import Moment from 'react-moment';
 import OrderModal from './OrderModal';
 
 import { Button, Menu, MenuItem } from '@material-ui/core';
+import { makePostRequest } from '../../../utilities';
 
 
 export default function PlacedOrder(props) {
     let order = props.order;
     const [anchorEl, setAnchorEl] = useState(null);
-    const [status, setStatus] = useState(order.status);
+    const [status, setStatus] = useState(order?.status?.value);
 
-    // BE call - get status list
-    let tmpStatusList = [
-        {
-            id: 1,
-            name: "Placed"
-        },
-        {
-            id: 2,
-            name: "Submitted for delivery"
-        },
-        {
-            id: 3,
-            name: "Scheduled for delivery"
-        },
-        {
-            id: 4,
-            name: "Delivered"
-        },
-        {
-            id: 5,
-            name: "Cancelled"
+    function handleOpenMenu(e) {
+        setAnchorEl(e.currentTarget);
+    }
+
+    function handleCloseMenu() {
+        setAnchorEl(null);
+    }
+
+    async function handleStatusChange(status) {
+        const result = await makePostRequest('/admin/orders/changeStatus', { auth: true, body: { orderId: order.id, statusId: status.id } });
+        if (result) {
+            setStatus(status.name);
+            props.onUpdate();
+            handleCloseMenu();
         }
-    ];
-
-    const handleOpenMenu = (event) => setAnchorEl(event.currentTarget);
-
-    const handleCloseMenu = () => setAnchorEl(null);
-
-    function handleStatusChange(status) {
-        // BE call - update order status
-        setStatus(status.name);
     }
 
     function _renderMenuItems() {
-        let menuList = tmpStatusList
-            .map((status) =>
-                <MenuItem key={status.id} onClick={() => handleStatusChange(status)}>{status.name}</MenuItem>
-            );
-        return menuList;
+        if (props.statusList?.length > 0) {
+            let menuList = props.statusList
+                .map((status) =>
+                    <MenuItem key={status.id} onClick={() => handleStatusChange(status)}>{status.name}</MenuItem>
+                );
+            return menuList;
+        }
     }
 
     return (
         <div className="ul-row-placed-table">
-            <div className="ul-li">{order.id}</div>
-            <div className="ul-li">{order.pickup.companyName}</div>
-            <div className="ul-li">{order.pickup.address}</div>
+            <div className="ul-li">{order?.id}</div>
+            <div className="ul-li">{order?.client?.company}</div>
+            <div className="ul-li">{order?.pickup?.address}</div>
             <div className="ul-li">
-                <Moment date={order.pickup.date} format="ll" withTitle />
+                <Moment date={order?.status?.timestamp} format="ll" withTitle />
             </div>
             <div>
                 <Button className="btn-menu" variant="contained" disableElevation={true} onClick={handleOpenMenu}>
