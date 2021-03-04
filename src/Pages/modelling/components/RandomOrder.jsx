@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makePostRequest, makeGetRequest } from '../../../utilities';
 import '../Modelling.css';
 
-const numberOfTimes = [1, 2, 3, 4, 5, 10, 15, 20, 25, 50];
+const numberOfTimes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50];
 const options = [1, 2, 3, 4, 5, 7, 8, 9, 10, 15, 20, 25, 50];
 const disabledStyle = { opacity: 0.5, backgroundColor: 'lightgrey' };
 
