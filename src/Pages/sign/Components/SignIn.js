@@ -63,9 +63,7 @@ function SignInComponent(props) {
         if (!check) {
             var result = await AuthenticateAsync(email.current.value, password.current.value);
             if (result.success) {
-                setTimeout(function () {
-                    window.location.push('/');
-                }, 1000);
+                props.setIsLoggedIn(true);
             } else {
                 setErrorMessage(result.errorMessage);
             }

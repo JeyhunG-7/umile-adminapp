@@ -36,7 +36,7 @@ export default function SignIn(props) {
                     {
                         showForgotPass
                             ? <ForgotPass handleHideForgotPass={handleHideForgotPass} />
-                            : <SignInComponent handleShowForgotPass={handleShowForgotPass} />
+                            : <SignInComponent handleShowForgotPass={handleShowForgotPass} setIsLoggedIn={props.setIsLoggedIn} />
                     }
                 </Fade>
             </div>

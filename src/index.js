@@ -18,53 +18,44 @@ import { IsSignedInAsync } from './Components/Helpers/Authenticator';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function effect(){
       const loggedIn = await IsSignedInAsync();
       setIsLoggedIn(loggedIn);
-      setIsLoading(false);
     }
     effect();
   });
 
-  // Need to use loading state to wait for log in callback to finish
-  if (isLoading) {
-    return <></>
+  if (!isLoggedIn){
+    return (
+      <Router>
+          <Switch>
+            {/* Public Routes */}
+            <Route exact path="/signin" render={(props) => <SignIn {...props} pageName="Sign In" setIsLoggedIn={setIsLoggedIn} />} />
+
+            <Redirect from='*' to='/signin' />
+          </Switch>
+        </Router>
+    )
   } else {
     return (
       <div style={{ display: "flex" }}>
         <Router>
-          {isLoggedIn ? <Sidebar /> : <></>}
+          <Sidebar />
           <Switch>
-            {/* Public Routes */}
-            <Route exact path="/signin" render={(props) => <SignIn {...props} pageName="Sign In" />} />
 
             {/* Private Routes */}
-            <PrivateRoute exact path={PAGES.newCustomer.route} auth={isLoggedIn} component={NewCustomer} pageName="New Customer" />
-            <PrivateRoute exact path={PAGES.activeOrders.route} auth={isLoggedIn} component={ActiveOrders} pageName="Active Orders" />
-            <PrivateRoute exact path={PAGES.routes.route} auth={isLoggedIn} component={Routes} pageName="Routes" />
+            <Route exact path={PAGES.newCustomer.route} component={NewCustomer} pageName="New Customer" />
+            <Route exact path={PAGES.activeOrders.route} component={ActiveOrders} pageName="Active Orders" />
+            <Route exact path={PAGES.routes.route} component={Routes} pageName="Routes" />
 
             <Redirect from='*' to={PAGES.activeOrders.route} />
           </Switch>
         </Router>
       </div>
-    );
+    )
   }
-}
-
-function PrivateRoute({ component: Component, auth, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        auth ?
-          <Component {...props} /> :
-          <Redirect to="/signin" />
-      }
-    />
-  );
 }
 
 ReactDOM.render(
